@@ -3,196 +3,162 @@ from collections import defaultdict
 # List of matchdays
 matchdays = [
     [
-        ("Atalanta", "Venezia"), ("Bologna", "Cagliari"), ("Fiorentina", "Empoli"),
-        ("Genoa", "AC Milan"), ("Hellas Verona", "Lazio"), ("Lecce", "Como"),
-        ("Napoli", "Internazionale"), ("Roma", "Parma"), ("Torino", "Monza"), ("Udinese", "Juventus")
+        ("Atalanta", "Venezia"), ("Empoli", "Hellas Verona"), ("Lazio", "Venezia"),
+        ("AC Milan", "Bologna"), ("Napoli", "Lecce"), ("Udinese", "Fiorentina"),
+        ("Torino", "Cagliari"), ("Como", "Juventus"), ("Monza", "Roma"), ("Parma", "Internazionale")
     ],
     [
-        ("Empoli", "Bologna"), ("Fiorentina", "Como"), ("Genoa", "Juventus"),
-        ("Hellas Verona", "Roma"), ("Lazio", "AC Milan"), ("Lecce", "Internazionale"),
-        ("Monza", "Udinese"), ("Parma", "Napoli"), ("Torino", "Atalanta"), ("Venezia", "Cagliari")
+        ("Atalanta", "Cagliari"), ("Bologna", "Fiorentina"), ("Empoli", "Monza"),
+        ("Lazio", "Udinese"), ("Internazionale", "Como"), ("Juventus", "Venezia"),
+        ("Napoli", "Hellas Verona"), ("Venezia", "AC Milan"), ("Lecce", "Roma"), ("Parma", "Torino")
     ],
     [
-        ("Bologna", "Internazionale"), ("Empoli", "Hellas Verona"), ("Genoa", "Como"),
-        ("Lazio", "Torino"), ("Lecce", "Cagliari"), ("AC Milan", "Fiorentina"),
-        ("Monza", "Juventus"), ("Parma", "Atalanta"), ("Roma", "Udinese"), ("Venezia", "Napoli")
+        ("Bologna", "Lazio"), ("Cagliari", "Hellas Verona"), ("Roma", "Empoli"),
+        ("Fiorentina", "Parma"), ("Internazionale", "Atalanta"), ("Juventus", "Napoli"),
+        ("Udinese", "AC Milan"), ("Lecce", "Monza"), ("Como", "Torino"), ("Venezia", "Venezia")
     ],
     [
-        ("Bologna", "Fiorentina"), ("Empoli", "Napoli"), ("Genoa", "Atalanta"),
-        ("Internazionale", "Cagliari"), ("Juventus", "Lazio"), ("Lecce", "Monza"),
-        ("Parma", "AC Milan"), ("Roma", "Como"), ("Torino", "Hellas Verona"), ("Udinese", "Venezia")
+        ("Atalanta", "Napoli"), ("Cagliari", "Internazionale"), ("Roma", "Fiorentina"),
+        ("Empoli", "Lazio"), ("Hellas Verona", "Bologna"), ("AC Milan", "Lecce"),
+        ("Torino", "Udinese"), ("Venezia", "Monza"), ("Venezia", "Como"), ("Parma", "Juventus")
     ],
     [
-        ("Atalanta", "Roma"), ("Empoli", "Internazionale"), ("Fiorentina", "Genoa"),
-        ("Hellas Verona", "Udinese"), ("Lazio", "Bologna"), ("Lecce", "Napoli"),
-        ("AC Milan", "Juventus"), ("Monza", "Como"), ("Parma", "Cagliari"), ("Venezia", "Torino")
+        ("Fiorentina", "Cagliari"), ("Lazio", "Venezia"), ("Hellas Verona", "Roma"),
+        ("Internazionale", "Udinese"), ("Napoli", "Bologna"), ("Torino", "Venezia"),
+        ("Lecce", "Juventus"), ("Como", "Empoli"), ("Monza", "AC Milan"), ("Parma", "Atalanta")
     ],
     [
-        ("Bologna", "Lecce"), ("Cagliari", "Udinese"), ("Empoli", "Como"),
-        ("Genoa", "Torino"), ("Hellas Verona", "Parma"), ("Juventus", "Atalanta"),
-        ("Monza", "Internazionale"), ("Napoli", "Fiorentina"), ("Roma", "Lazio"), ("Venezia", "AC Milan")
+        ("Atalanta", "Monza"), ("Bologna", "Torino"), ("Roma", "Cagliari"),
+        ("Empoli", "Parma"), ("AC Milan", "Hellas Verona"), ("Juventus", "Udinese"),
+        ("Napoli", "Venezia"), ("Venezia", "Internazionale"), ("Lecce", "Lazio"), ("Como", "Fiorentina")
     ],
     [
-        ("Atalanta", "Hellas Verona"), ("Bologna", "Torino"), ("Como", "Cagliari"),
-        ("Empoli", "Lazio"), ("Genoa", "Lecce"), ("Juventus", "Fiorentina"),
-        ("AC Milan", "Internazionale"), ("Monza", "Roma"), ("Udinese", "Napoli"), ("Venezia", "Parma")
+        ("Bologna", "Juventus"), ("Cagliari", "Venezia"), ("Fiorentina", "Napoli"),
+        ("Lazio", "AC Milan"), ("Hellas Verona", "Atalanta"), ("Internazionale", "Roma"),
+        ("Udinese", "Monza"), ("Torino", "Empoli"), ("Venezia", "Lecce"), ("Parma", "Como")
     ],
     [
-        ("Atalanta", "Lazio"), ("Bologna", "Monza"), ("Empoli", "Juventus"),
-        ("Genoa", "Hellas Verona"), ("Lecce", "AC Milan"), ("Napoli", "Cagliari"),
-        ("Parma", "Fiorentina"), ("Torino", "Como"), ("Udinese", "Internazionale"), ("Venezia", "Roma")
+        ("Atalanta", "Lazio"), ("Cagliari", "Venezia"), ("Roma", "Juventus"),
+        ("Empoli", "Bologna"), ("Hellas Verona", "Lecce"), ("AC Milan", "Fiorentina"),
+        ("Torino", "Internazionale"), ("Venezia", "Napoli"), ("Como", "Monza"), ("Parma", "Udinese")
     ],
     [
-        ("Atalanta", "Como"), ("Bologna", "Udinese"), ("Cagliari", "Fiorentina"),
-        ("Empoli", "Parma"), ("Genoa", "Napoli"), ("Hellas Verona", "Lecce"),
-        ("Monza", "Lazio"), ("Roma", "AC Milan"), ("Torino", "Juventus"), ("Venezia", "Internazionale")
+        ("Atalanta", "Bologna"), ("Fiorentina", "Empoli"), ("Lazio", "Torino"),
+        ("AC Milan", "Parma"), ("Juventus", "Hellas Verona"), ("Napoli", "Cagliari"),
+        ("Udinese", "Lecce"), ("Como", "Venezia"), ("Venezia", "Roma"), ("Monza", "Internazionale")
     ],
     [
-        ("Atalanta", "Monza"), ("Bologna", "AC Milan"), ("Empoli", "Cagliari"),
-        ("Genoa", "Parma"), ("Hellas Verona", "Fiorentina"), ("Internazionale", "Como"),
-        ("Juventus", "Napoli"), ("Lazio", "Venezia"), ("Roma", "Lecce"), ("Udinese", "Torino")
+        ("Bologna", "Como"), ("Cagliari", "Lecce"), ("Roma", "Udinese"),
+        ("Empoli", "Atalanta"), ("Hellas Verona", "Lazio"), ("Internazionale", "Juventus"),
+        ("Napoli", "AC Milan"), ("Torino", "Venezia"), ("Venezia", "Parma"), ("Monza", "Fiorentina")
     ],
     [
-        ("Atalanta", "Napoli"), ("Bologna", "Como"), ("Cagliari", "AC Milan"),
-        ("Hellas Verona", "Internazionale"), ("Lazio", "Fiorentina"), ("Lecce", "Juventus"),
-        ("Monza", "Parma"), ("Torino", "Roma"), ("Udinese", "Empoli"), ("Venezia", "Genoa")
+        ("Bologna", "Monza"), ("Cagliari", "Juventus"), ("Fiorentina", "Venezia"),
+        ("Lazio", "Internazionale"), ("AC Milan", "Roma"), ("Udinese", "Atalanta"),
+        ("Torino", "Napoli"), ("Venezia", "Empoli"), ("Como", "Hellas Verona"), ("Parma", "Lecce")
     ],
     [
-        ("Atalanta", "Fiorentina"), ("Bologna", "Hellas Verona"), ("Como", "Juventus"),
-        ("Empoli", "Torino"), ("Lecce", "Venezia"), ("AC Milan", "Udinese"),
-        ("Monza", "Cagliari"), ("Napoli", "Lazio"), ("Parma", "Internazionale"), ("Roma", "Genoa")
+        ("Atalanta", "AC Milan"), ("Empoli", "Venezia"), ("Lazio", "Roma"),
+        ("Hellas Verona", "Torino"), ("Internazionale", "Napoli"), ("Juventus", "Fiorentina"),
+        ("Udinese", "Venezia"), ("Lecce", "Bologna"), ("Como", "Cagliari"), ("Monza", "Parma")
     ],
     [
-        ("Cagliari", "Hellas Verona"), ("Fiorentina", "Monza"), ("Internazionale", "Atalanta"),
-        ("Juventus", "Venezia"), ("Lazio", "Genoa"), ("AC Milan", "Empoli"),
-        ("Napoli", "Torino"), ("Parma", "Como"), ("Roma", "Bologna"), ("Udinese", "Lecce")
+        ("Bologna", "Udinese"), ("Cagliari", "Parma"), ("Roma", "Torino"),
+        ("Fiorentina", "Hellas Verona"), ("AC Milan", "Internazionale"), ("Juventus", "Empoli"),
+        ("Napoli", "Lazio"), ("Venezia", "Atalanta"), ("Lecce", "Como"), ("Venezia", "Monza")
     ],
     [
-        ("Bologna", "Atalanta"), ("Cagliari", "Juventus"), ("Como", "Lazio"),
-        ("Empoli", "Monza"), ("Hellas Verona", "AC Milan"), ("Parma", "Lecce"),
-        ("Roma", "Napoli"), ("Torino", "Internazionale"), ("Udinese", "Genoa"), ("Venezia", "Fiorentina")
+        ("Atalanta", "Juventus"), ("Cagliari", "Bologna"), ("Roma", "Como"),
+        ("Empoli", "Lecce"), ("Internazionale", "Fiorentina"), ("Napoli", "Udinese"),
+        ("Torino", "AC Milan"), ("Venezia", "Hellas Verona"), ("Venezia", "Parma"), ("Monza", "Lazio")
     ],
     [
-        ("Atalanta", "Cagliari"), ("Bologna", "Venezia"), ("Como", "AC Milan"),
-        ("Fiorentina", "Roma"), ("Genoa", "Internazionale"), ("Juventus", "Hellas Verona"),
-        ("Lazio", "Udinese"), ("Lecce", "Empoli"), ("Monza", "Napoli"), ("Parma", "Torino")
+        ("Atalanta", "Torino"), ("Bologna", "Venezia"), ("Empoli", "Napoli"),
+        ("Lazio", "Cagliari"), ("Hellas Verona", "Internazionale"), ("AC Milan", "Venezia"),
+        ("Juventus", "Monza"), ("Udinese", "Como"), ("Lecce", "Fiorentina"), ("Parma", "Roma")
     ],
     [
-        ("Empoli", "Roma"), ("Genoa", "Cagliari"), ("Hellas Verona", "Monza"),
-        ("Internazionale", "Lazio"), ("Lecce", "Atalanta"), ("AC Milan", "Torino"),
-        ("Napoli", "Bologna"), ("Parma", "Juventus"), ("Udinese", "Fiorentina"), ("Venezia", "Como")
+        ("Cagliari", "Udinese"), ("Roma", "Venezia"), ("Fiorentina", "Torino"),
+        ("Internazionale", "Empoli"), ("Juventus", "Lazio"), ("Napoli", "Parma"),
+        ("Lecce", "Atalanta"), ("Como", "AC Milan"), ("Venezia", "Bologna"), ("Monza", "Hellas Verona")
     ],
     [
-        ("Bologna", "Genoa"), ("Cagliari", "Lazio"), ("Empoli", "Atalanta"),
-        ("Internazionale", "Fiorentina"), ("Lecce", "Torino"), ("AC Milan", "Monza"),
-        ("Napoli", "Como"), ("Parma", "Udinese"), ("Roma", "Juventus"), ("Venezia", "Hellas Verona")
+        ("Bologna", "Internazionale"), ("Cagliari", "Empoli"), ("Roma", "Atalanta"),
+        ("Fiorentina", "Lazio"), ("Hellas Verona", "Parma"), ("AC Milan", "Juventus"),
+        ("Torino", "Monza"), ("Venezia", "Lecce"), ("Como", "Napoli"), ("Venezia", "Udinese")
     ],
     [
-        ("Empoli", "Venezia"), ("Genoa", "Monza"), ("Hellas Verona", "Como"),
-        ("Internazionale", "Juventus"), ("Lecce", "Lazio"), ("AC Milan", "Napoli"),
-        ("Parma", "Bologna"), ("Roma", "Cagliari"), ("Torino", "Fiorentina"), ("Udinese", "Atalanta")
+        ("Atalanta", "Fiorentina"), ("Empoli", "AC Milan"), ("Lazio", "Como"),
+        ("Hellas Verona", "Udinese"), ("Internazionale", "Venezia"), ("Napoli", "Roma"),
+        ("Torino", "Lecce"), ("Venezia", "Juventus"), ("Monza", "Cagliari"), ("Parma", "Bologna")
     ],
     [
-        ("Bologna", "Juventus"), ("Cagliari", "Torino"), ("Como", "Udinese"),
-        ("Empoli", "Genoa"), ("Hellas Verona", "Napoli"), ("Lazio", "Parma"),
-        ("Lecce", "Fiorentina"), ("AC Milan", "Atalanta"), ("Monza", "Venezia"), ("Roma", "Internazionale")
+        ("Atalanta", "Como"), ("Bologna", "Roma"), ("Fiorentina", "Venezia"),
+        ("Lazio", "Parma"), ("AC Milan", "Cagliari"), ("Juventus", "Torino"),
+        ("Udinese", "Empoli"), ("Lecce", "Internazionale"), ("Venezia", "Hellas Verona"), ("Monza", "Napoli")
     ],
     [
-        ("Atalanta", "Empoli"), ("Fiorentina", "Hellas Verona"), ("Internazionale", "Genoa"),
-        ("Juventus", "Monza"), ("Lazio", "Cagliari"), ("Lecce", "Bologna"),
-        ("Napoli", "AC Milan"), ("Parma", "Roma"), ("Torino", "Venezia"), ("Udinese", "Como")
+        ("Bologna", "Hellas Verona"), ("Cagliari", "AC Milan"), ("Roma", "Parma"),
+        ("Empoli", "Torino"), ("Internazionale", "Monza"), ("Juventus", "Atalanta"),
+        ("Udinese", "Venezia"), ("Venezia", "Fiorentina"), ("Lecce", "Napoli"), ("Como", "Lazio")
     ],
     [
-        ("Atalanta", "AC Milan"), ("Cagliari", "Parma"), ("Empoli", "Lecce"),
-        ("Hellas Verona", "Genoa"), ("Juventus", "Como"), ("Lazio", "Internazionale"),
-        ("Napoli", "Monza"), ("Roma", "Fiorentina"), ("Torino", "Udinese"), ("Venezia", "Bologna")
+        ("Roma", "Lazio"), ("Fiorentina", "Udinese"), ("Hellas Verona", "Juventus"),
+        ("Internazionale", "Venezia"), ("Napoli", "Atalanta"), ("Torino", "Bologna"),
+        ("Como", "Lecce"), ("Venezia", "Cagliari"), ("Monza", "Empoli"), ("Parma", "AC Milan")
     ],
     [
-        ("Atalanta", "Juventus"), ("Bologna", "Empoli"), ("Cagliari", "Internazionale"),
-        ("Como", "Venezia"), ("Fiorentina", "Udinese"), ("Lazio", "Lecce"),
-        ("Monza", "Genoa"), ("Napoli", "Roma"), ("Parma", "Hellas Verona"), ("Torino", "AC Milan")
+        ("Cagliari", "Monza"), ("Fiorentina", "Roma"), ("Lazio", "Hellas Verona"),
+        ("AC Milan", "Atalanta"), ("Juventus", "Bologna"), ("Napoli", "Como"),
+        ("Udinese", "Internazionale"), ("Venezia", "Torino"), ("Lecce", "Empoli"), ("Parma", "Venezia")
     ],
     [
-        ("Atalanta", "Udinese"), ("Bologna", "Napoli"), ("Cagliari", "Venezia"),
-        ("Como", "Lecce"), ("Fiorentina", "Juventus"), ("Internazionale", "Empoli"),
-        ("AC Milan", "Lazio"), ("Parma", "Monza"), ("Roma", "Hellas Verona"), ("Torino", "Genoa")
+        ("Atalanta", "Roma"), ("Bologna", "Lecce"), ("Cagliari", "Venezia"),
+        ("Empoli", "Fiorentina"), ("Lazio", "Napoli"), ("Hellas Verona", "Venezia"),
+        ("Internazionale", "Parma"), ("Juventus", "Como"), ("Monza", "Torino"), ("AC Milan", "Udinese")
     ],
     [
-        ("Cagliari", "Roma"), ("Fiorentina", "Venezia"), ("Genoa", "Udinese"),
-        ("Hellas Verona", "Empoli"), ("Internazionale", "Parma"), ("Juventus", "Bologna"),
-        ("Lazio", "Napoli"), ("AC Milan", "Como"), ("Monza", "Atalanta"), ("Torino", "Lecce")
+        ("Atalanta", "Venezia"), ("Bologna", "Empoli"), ("Cagliari", "Lazio"),
+        ("Roma", "AC Milan"), ("Fiorentina", "Como"), ("Internazionale", "Hellas Verona"),
+        ("Juventus", "Parma"), ("Napoli", "Monza"), ("Torino", "Venezia"), ("Lecce", "Udinese")
     ],
     [
-        ("Cagliari", "Atalanta"), ("Fiorentina", "Napoli"), ("Juventus", "Internazionale"),
-        ("Lazio", "Como"), ("Lecce", "Hellas Verona"), ("AC Milan", "Genoa"),
-        ("Parma", "Venezia"), ("Roma", "Monza"), ("Torino", "Empoli"), ("Udinese", "Bologna")
+        ("Bologna", "Fiorentina"), ("Cagliari", "Roma"), ("Empoli", "Internazionale"),
+        ("Lazio", "Venezia"), ("Hellas Verona", "Napoli"), ("AC Milan", "Monza"),
+        ("Juventus", "Lecce"), ("Venezia", "Atalanta"), ("Como", "Parma"), ("Torino", "Udinese")
     ],
     [
-        ("Cagliari", "Napoli"), ("Como", "Atalanta"), ("Fiorentina", "AC Milan"),
-        ("Genoa", "Bologna"), ("Hellas Verona", "Juventus"), ("Internazionale", "Monza"),
-        ("Parma", "Empoli"), ("Roma", "Torino"), ("Udinese", "Lazio"), ("Venezia", "Lecce")
+        ("Atalanta", "Empoli"), ("Fiorentina", "Juventus"), ("Lazio", "Monza"),
+        ("AC Milan", "Como"), ("Internazionale", "Cagliari"), ("Napoli", "Parma"),
+        ("Udinese", "Venezia"), ("Venezia", "Bologna"), ("Lecce", "Roma"), ("Torino", "Hellas Verona")
     ],
     [
-        ("Atalanta", "Torino"), ("Bologna", "Lazio"), ("Como", "Monza"),
-        ("Empoli", "AC Milan"), ("Fiorentina", "Cagliari"), ("Internazionale", "Hellas Verona"),
-        ("Lecce", "Roma"), ("Napoli", "Udinese"), ("Parma", "Genoa"), ("Venezia", "Juventus")
+        ("Bologna", "Atalanta"), ("Cagliari", "Napoli"), ("Empoli", "AC Milan"),
+        ("Roma", "Internazionale"), ("Fiorentina", "Monza"), ("Juventus", "Lazio"),
+        ("Venezia", "Udinese"), ("Venezia", "Lecce"), ("Como", "Hellas Verona"), ("Parma", "Torino")
     ],
     [
-        ("Cagliari", "Bologna"), ("Como", "Napoli"), ("Empoli", "Fiorentina"),
-        ("Hellas Verona", "Atalanta"), ("Internazionale", "AC Milan"), ("Juventus", "Roma"),
-        ("Lecce", "Genoa"), ("Monza", "Torino"), ("Udinese", "Parma"), ("Venezia", "Lazio")
+        ("Atalanta", "Fiorentina"), ("Bologna", "Roma"), ("Cagliari", "Juventus"),
+        ("Empoli", "Lazio"), ("Hellas Verona", "Napoli"), ("AC Milan", "Torino"),
+        ("Internazionale", "Como"), ("Venezia", "Monza"), ("Lecce", "Venezia"), ("Parma", "Udinese")
     ],
     [
-        ("Cagliari", "Lecce"), ("Como", "Hellas Verona"), ("Fiorentina", "Atalanta"),
-        ("Genoa", "Venezia"), ("Internazionale", "Bologna"), ("Lazio", "Empoli"),
-        ("AC Milan", "Roma"), ("Napoli", "Juventus"), ("Torino", "Parma"), ("Udinese", "Monza")
+        ("Atalanta", "Cagliari"), ("Fiorentina", "Napoli"), ("Lazio", "Hellas Verona"),
+        ("AC Milan", "Juventus"), ("Roma", "Venezia"), ("Internazionale", "Torino"),
+        ("Udinese", "Bologna"), ("Venezia", "Empoli"), ("Como", "Lecce"), ("Monza", "Parma")
     ],
     [
-        ("Como", "Torino"), ("Fiorentina", "Parma"), ("Genoa", "Lazio"),
-        ("Internazionale", "Roma"), ("Juventus", "Lecce"), ("AC Milan", "Hellas Verona"),
-        ("Monza", "Bologna"), ("Napoli", "Atalanta"), ("Udinese", "Cagliari"), ("Venezia", "Empoli")
+        ("Bologna", "AC Milan"), ("Cagliari", "Lecce"), ("Empoli", "Atalanta"),
+        ("Fiorentina", "Lazio"), ("Hellas Verona", "Internazionale"), ("Juventus", "Venezia"),
+        ("Napoli", "Monza"), ("Udinese", "Venezia"), ("Como", "Roma"), ("Parma", "Torino")
     ],
     [
-        ("Atalanta", "Lecce"), ("Bologna", "Parma"), ("Como", "Internazionale"),
-        ("Fiorentina", "Torino"), ("Genoa", "Roma"), ("Hellas Verona", "Cagliari"),
-        ("Juventus", "AC Milan"), ("Lazio", "Monza"), ("Napoli", "Empoli"), ("Venezia", "Udinese")
-    ],
-    [
-        ("Atalanta", "Parma"), ("Cagliari", "Como"), ("Fiorentina", "Lazio"),
-        ("Hellas Verona", "Bologna"), ("Internazionale", "Torino"), ("Juventus", "Genoa"),
-        ("AC Milan", "Venezia"), ("Monza", "Empoli"), ("Napoli", "Lecce"), ("Udinese", "Roma")
-    ],
-    [
-        ("Cagliari", "Genoa"), ("Como", "Empoli"), ("Fiorentina", "Lecce"),
-        ("Hellas Verona", "Venezia"), ("Internazionale", "Napoli"), ("Juventus", "Udinese"),
-        ("Monza", "AC Milan"), ("Parma", "Lazio"), ("Roma", "Atalanta"), ("Torino", "Bologna")
-    ],
-    [
-        ("Como", "Parma"), ("Fiorentina", "Bologna"), ("Internazionale", "Lecce"),
-        ("Juventus", "Empoli"), ("Lazio", "Atalanta"), ("Monza", "Hellas Verona"),
-        ("Napoli", "Genoa"), ("Roma", "Venezia"), ("Torino", "Cagliari"), ("Udinese", "AC Milan")
-    ],
-    [
-        ("Atalanta", "Internazionale"), ("Bologna", "Roma"), ("Cagliari", "Monza"),
-        ("Como", "Fiorentina"), ("Genoa", "Empoli"), ("Juventus", "Parma"),
-        ("AC Milan", "Lecce"), ("Napoli", "Venezia"), ("Torino", "Lazio"), ("Udinese", "Hellas Verona")
-    ],
-    [
-        ("Atalanta", "Bologna"), ("Como", "Genoa"), ("Internazionale", "Venezia"),
-        ("Juventus", "Cagliari"), ("Lazio", "Hellas Verona"), ("Lecce", "Udinese"),
-        ("AC Milan", "Parma"), ("Monza", "Fiorentina"), ("Roma", "Empoli"), ("Torino", "Napoli")
-    ],
-    [
-        ("Atalanta", "Genoa"), ("Como", "Bologna"), ("Empoli", "Udinese"),
-        ("Fiorentina", "Internazionale"), ("Juventus", "Torino"), ("Lazio", "Roma"),
-        ("Lecce", "Parma"), ("AC Milan", "Cagliari"), ("Napoli", "Hellas Verona"), ("Venezia", "Monza")
-    ],
-    [
-        ("Cagliari", "Empoli"), ("Como", "Roma"), ("Genoa", "Fiorentina"),
-        ("Hellas Verona", "Torino"), ("Internazionale", "Udinese"), ("Lazio", "Juventus"),
-        ("AC Milan", "Bologna"), ("Monza", "Lecce"), ("Napoli", "Parma"), ("Venezia", "Atalanta")
+        ("Atalanta", "Venezia"), ("Bologna", "Torino"), ("Cagliari", "Empoli"),
+        ("Fiorentina", "Roma"), ("Lazio", "Napoli"), ("Hellas Verona", "Lecce"),
+        ("AC Milan", "Venezia"), ("Internazionale", "Juventus"), ("Como", "Monza"), ("Parma", "Udinese")
     ]
 ]
+
 
 
 

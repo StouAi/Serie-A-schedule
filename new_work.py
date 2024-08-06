@@ -6,21 +6,24 @@ teams = [
     "Atalanta",       # 0
     "Bologna",        # 1
     "Cagliari",       # 2
-    "Como",           # 3
+    "Roma",           # 3
     "Empoli",         # 4
     "Fiorentina",     # 5
-    "Genoa",          # 6
+    "Lazio",          # 6
     "Hellas Verona",  # 7
     "Internazionale", # 8
     "AC Milan",       # 9
-    "Monza",          # 10
+    "Juventus",       # 10
     "Napoli",         # 11
     "Udinese",        # 12
-    "Parma",          # 13
+    "Torino",         # 13
     "Venezia",        # 14
-    "Lecce"           # 15
-    # "Juventus",       # 16
-    # "Roma",           # 17
+    "Lecce",          # 15
+    "Como" ,          # 16
+    "Venezia",        # 17
+    "Monza",          # 18
+    "Parma"           # 19
+    
 ]
 
 time_now = time.time()
@@ -83,8 +86,8 @@ for i in range(num_teams):
 # matches between Napoli, Inter, Milan, and Atalanta nor the local derbies of 
 # Tuscany (EMPOLI-FIORENTINA) can be scheduled.
 for k in [0, 1, 4, 5, num_matchdays - 1]:
-    for i in [0, 4, 5, 8, 9, 11]:  # Atalanta, Empoli, Fiorentina, Inter, Milan, Napoli
-        for j in [0, 4, 5, 8, 9, 11]:
+    for i in [0,3, 4,6, 5, 8, 9, 10,13,11]:  # Atalanta, Empoli, Fiorentina, Inter, Milan, Napoli
+        for j in [0, 3,4,6, 5, 8, 9,10,13, 11]:
             if i != j:
                 problem += x[i][j][k] + x[j][i][k] == 0
 
@@ -98,12 +101,22 @@ for k in range(num_matchdays):
 for k in range(num_matchdays):
     problem += y[8][k] + y[9][k] == 1
 
+#Roma (3) - Lazio (6)
+for k in range(num_matchdays):
+    problem += y[3][k] + y[6][k] == 1
+
+#Juventus (10) - Torino (13)
+for k in range(num_matchdays):
+    problem += y[10][k] + y[13][k] == 1
+
 # Constraint 8: All local derbies must be played on different matchdays
 # Milan (9) - Inter (8), Fiorentina (5) - Empoli (4)
 for k in range(num_matchdays):
     problem += (
         x[8][9][k] + x[9][8][k] + 
-        x[5][4][k] + x[4][5][k]
+        x[5][4][k] + x[4][5][k]+
+        x[3][6][k] + x[6][3][k] +
+        x[10][13][k] + x[13][10][k] 
     ) <= 1
 
 # Objective function
