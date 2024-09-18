@@ -1,7 +1,7 @@
 import pulp
 import time
 
-# Updated team names (removing Lazio, Roma, Juventus, and Torino)
+
 teams = [
     "Atalanta",       # 0
     "Bologna",        # 1

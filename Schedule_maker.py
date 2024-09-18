@@ -2,6 +2,24 @@
 import pulp
 import time
 import matplotlib.pyplot as plt
+
+
+stats = int(input("Enter 1 to see the graph representing calculation time based on minum number of matches between the same teams: "))
+
+if stats == 1:
+    # X-axis values: Minimum number of matches between games of the same teams
+    x = [2, 3, 4, 5, 6, 7, 8]
+
+    # Y-axis values: Time taken in seconds
+    y = [330, 900, 1300, 1e5, 1e5, 1e5, 1e5]  # Using 1e5 to represent impractically long times
+
+    plt.plot(x, y, marker='o')
+    plt.xlabel("Minimum number of matches between games of the same teams")
+    plt.ylabel("Time taken in seconds (log scale)")
+    plt.title("Time taken based on selection")
+    plt.yscale('log')  # Set y-axis to logarithmic scale
+    plt.grid(True, which="both", ls="--")
+    plt.show()
 while True:
     selection = int(input("Enter the minumum number of matches between games of the same teams(2-8): "))
     if selection > 8 or selection < 2:
@@ -140,33 +158,29 @@ problem.solve()
 
 # Print the results
 
+# print(f"{'Matchday':<10} {'Home Team':<20} {'Away Team':<20}")
+# print("=" * 50)
+# for k in range(num_matchdays):
+#     print(f"Matchday {k + 1}:")
+#     for i in range(num_teams):
+#         for j in range(num_teams):
+#             if i != j and pulp.value(x[i][j][k]) == 1:
+#                 print(f"{'':<10} {teams[i]:<20} {teams[j]:<20}")
+#     print("=" * 50)
+
+# Print the results correctly
 print(f"{'Matchday':<10} {'Home Team':<20} {'Away Team':<20}")
 print("=" * 50)
 for k in range(num_matchdays):
+    match_set = set()  # To keep track of printed matches
     print(f"Matchday {k + 1}:")
     for i in range(num_teams):
         for j in range(num_teams):
-            if i != j and pulp.value(x[i][j][k]) == 1:
+            if i != j and pulp.value(x[i][j][k]) == 1 and (i, j) not in match_set:
                 print(f"{'':<10} {teams[i]:<20} {teams[j]:<20}")
+                match_set.add((i, j))  # Mark this match as printed
     print("=" * 50)
 
 print(f"Time taken: {time.time() - time_now:.2f} seconds")
 
 
-# Taking user input for displaying the graph
-stats = int(input("Enter 1 to see the graph representing calculation time based on previous selection: "))
-
-if stats == 1:
-    # X-axis values: Minimum number of matches between games of the same teams
-    x = [2, 3, 4, 5, 6, 7, 8]
-
-    # Y-axis values: Time taken in seconds
-    y = [330, 900, 1300, 1e5, 1e5, 1e5, 1e5]  # Using 1e5 to represent impractically long times
-
-    plt.plot(x, y, marker='o')
-    plt.xlabel("Minimum number of matches between games of the same teams")
-    plt.ylabel("Time taken in seconds (log scale)")
-    plt.title("Time taken based on selection")
-    plt.yscale('log')  # Set y-axis to logarithmic scale
-    plt.grid(True, which="both", ls="--")
-    plt.show()
