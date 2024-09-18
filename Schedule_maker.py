@@ -156,17 +156,6 @@ problem += Z
 # Solve the problem
 problem.solve()
 
-# Print the results
-
-# print(f"{'Matchday':<10} {'Home Team':<20} {'Away Team':<20}")
-# print("=" * 50)
-# for k in range(num_matchdays):
-#     print(f"Matchday {k + 1}:")
-#     for i in range(num_teams):
-#         for j in range(num_teams):
-#             if i != j and pulp.value(x[i][j][k]) == 1:
-#                 print(f"{'':<10} {teams[i]:<20} {teams[j]:<20}")
-#     print("=" * 50)
 
 # Print the results correctly
 print(f"{'Matchday':<10} {'Home Team':<20} {'Away Team':<20}")
